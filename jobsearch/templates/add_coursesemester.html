@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+<!-- ========================= SECTION MAIN ========================= -->
+
+{% load static %}
+<!-- ========================= SECTION MAIN ========================= -->
+
+{% block content %}
+<style>
+  .table{
+	  background: linear-gradient(250deg, #dc354585, #0524ff61);
+	  height: auto;
+	  background-position: center;
+	  background-repeat: no-repeat;
+	  background-size: cover;
+	  border-radius: 5px;
+  }
+  .orderss {
+  background-color: rgba(47, 54, 54, 0.57);
+  margin: 5px 5px;
+  border-radius: 10px;
+  padding: 5px;
+  height: auto;
+  box-shadow: 10px 7px 20px #0a0000;
+
+}
+        table {
+            margin: 5px;
+            flex: 3;
+        }
+
+        table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background-color: lightblue;
+   border-radius: 10px;
+}
+
+td, th {
+  border: 3px solid #dddddd;
+  text-align: left;
+  padding: 5px;
+   border-color: #96D4D4;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+* {
+  box-sizing: border-box;
+}
+
+
+.column {
+  float: left;
+  width: 100%;
+  padding: 5px;
+  height: 300px;
+}
+.column1 {
+  float: left;
+  width: 100%;
+  padding: 5px;
+  height: 300px;
+}
+.clmn {
+  float: left;
+  width: 100%;
+  padding: 5px;
+  height: auto;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+</style>
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg orderss" id="orderss">
+
+<div class="container">
+	<div class="row">
+	{% include 'sidebar.html' %}
+	<main class="col-md-9">
+		<article class="card orderss">
+		<header class="card-header">
+			<strong class="d-inline-block mr-3 ">Add course semester</strong>
+
+		</header>
+
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add course semester</button>
+        </form>
+
+		</article> 
+	</main>
+		 <div class="column1">
+            <h2 style="text-align: center;">Course semester Data</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>course</th>
+                        <th>semester</th>
+                        <th>start date</th>
+                        <th>End date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course_semester in course_semesters %}
+                        <tr>
+                            <td>{{ course_semester.id }}</td>
+                            <td>{{ course_semester.course_id }}</td>
+                            <td>{{ course_semester.semester_id }}</td>
+                            <td>{{ course_semester.start_date }}</td>
+                            <td>{{ course_semester.end_date }}</td>
+                            <td>
+                                <a href="{% url 'update_coursesemester' course_semester.id %}">Update</a> |
+                                <a href="{% url 'delete_coursesemester' course_semester.id %}" style = "color:red;">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                </div>
+</div> <!-- row.// -->
+</div>
+
+
+</section>
+
+
+
+
+
+</body>
+</html>
+{% endblock %}

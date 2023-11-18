@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested Menu</title>
+    <style>
+        /* Add your styling here */
+    </style>
+</head>
+<body>
+    <ul>
+        {% for item in menu_data %}
+            <li><a href="{{ item.url }}">{{ item.label }}</a>
+                {% if item.menuitem_set.all %}
+                    <ul>
+                        {% for child_item in item.menuitem_set.all %}
+                            <li><a href="{{ child_item.url }}">{{ child_item.label }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

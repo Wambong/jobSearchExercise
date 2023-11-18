@@ -1,0 +1,28 @@
+<style>
+	  .dashboard {
+ background-color: rgba(47, 54, 54, 0.57);
+  margin: 5px 5px;
+  border-radius: 20px;
+  padding: 5px;
+  height: auto;
+  box-shadow: 16px 13px 40px #0a0000;
+
+  }
+</style>
+
+<aside class="col-md-3" >
+		<!--   SIDEBAR   -->
+		<ul class="list-group dashboard">
+	<a class="list-group-item {% if '' == request.path %}active{% endif %}" href="{% url 'home' %}"> Dashboard </a>
+	<a class="list-group-item {% if '/add_course/' == request.path %}active{% endif %}" href="{% url 'add_course' %}"> Add course </a>
+	<a class="list-group-item {% if '/add_student/' == request.path %}active{% endif %}" href="{% url 'add_student' %}"> Add student</a>
+	<a class="list-group-item {% if '/add_teacher/' == request.path %}active{% endif %}" href="{% url 'add_teacher' %}">add teacher</a>
+	<a class="list-group-item {% if '/add_semester/' == request.path %}active{% endif %}" href="{% url 'add_semester' %}">add semester</a>
+	<a class="list-group-item {% if '/add_coursesemester/' == request.path %}active{% endif %}" href="{% url 'add_coursesemester' %}">add coursesemester</a>
+	<a class="list-group-item {% if '/documentation_swagger/' == request.path %}active{% endif %}" href="{% url 'schema-swagger-ui' %}">Doc|Swagger</a>
+	<a class="list-group-item {% if '/documentation_redoc/' == request.path %}active{% endif %}" href="{% url 'schema-redoc' %}">Doc|Redoc</a>
+	<a class="list-group-item {% if '/api/students/' == request.path %}active{% endif %}" href="{% url 'student-list-create' %}">API</a>
+
+		</ul>
+
+	</aside>

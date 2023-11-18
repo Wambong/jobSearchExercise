@@ -1,0 +1,233 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+        <style>
+
+        body {
+            display: flex;
+            flex-wrap: wrap;
+             background-color: lightblue;
+        }
+
+        table {
+            margin: 10px;
+            flex: 1;
+        }
+    </style>    <style>
+
+        body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        table {
+            margin: 10px;
+            flex: 1;
+        }
+
+        table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+* {
+  box-sizing: border-box;
+}
+
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  height: 300px;
+}
+.column1 {
+  float: left;
+  width: 66%;
+  padding: 10px;
+  height: 300px;
+}
+.clmn {
+  float: left;
+  width: 100%;
+  padding: 10px;
+  height: auto;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+    </style>
+</head>
+<body>
+<div class="row">
+    {% include 'sidebar.html' %}
+    <div class="clmn">
+    <h2>Combined Table</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Full Name</th>
+                <th>Course</th>
+                <th>Course Number</th>
+                <th>Semester</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Teacher</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in combined_data %}
+                <tr>
+                    <td>{{ data.student__id }}</td>
+                    <td>{{ data.student__name }} {{ data.student__first_name }}</td>
+                    <td>{{ data.student__course__course_name }}</td>
+                    <td>{{ data.student__course__course_number }}</td>
+                    <td>{{ data.student__course__coursesemester__semester_id__semester_no }}</td>
+                    <td>{{ data.student__course__coursesemester__start_date }}</td>
+                    <td>{{ data.student__course__coursesemester__end_date }}</td>
+                    <td>{{ data.student__course__coursesemester__semester_id__teacher__name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+    <div>
+        <div class="row">
+            <div class="column">
+            <h2>Course Data</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Course Name</th>
+                        <th>Course Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course in courses %}
+                        <tr>
+                            <td>{{ course.id }}</td>
+                            <td>{{ course.course_name }}</td>
+                            <td>{{ course.course_number }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </div>
+            <div class="column">
+            <h2>Teacher Data</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>First Name</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for teacher in teachers %}
+                        <tr>
+                            <td>{{ teacher.id }}</td>
+                            <td>{{ teacher.name }}</td>
+                            <td>{{ teacher.first_name }}</td>
+                            <td>{{ teacher.title }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+            <div class="column">
+            <h2>Student Data</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>First Name</th>
+                        <th>Course</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                        <tr>
+                            <td>{{ student.id }}</td>
+                            <td>{{ student.name }}</td>
+                            <td>{{ student.first_name }}</td>
+                            <td>{{ student.course }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                </div>
+        </div>
+        <div class="row">
+            <div class="column1">
+            <h2>Course semester Data</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>course</th>
+                        <th>semester</th>
+                        <th>start date</th>
+                        <th>End date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for course_semester in course_semesters %}
+                        <tr>
+                            <td>{{ course_semester.id }}</td>
+                            <td>{{ course_semester.course_id }}</td>
+                            <td>{{ course_semester.semester_id }}</td>
+                            <td>{{ course_semester.start_date }}</td>
+                            <td>{{ course_semester.end_date }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                </div>
+            <div class="column">
+            <h2> semester Data</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>semester No</th>
+                        <th>Teacher</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for semester in semesters %}
+                        <tr>
+                            <td>{{ semester.id }}</td>
+                            <td>{{ semester.semester_no }}</td>
+                            <td>{{ semester.teacher }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+                </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
